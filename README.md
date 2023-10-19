@@ -3,13 +3,13 @@
 This lib is intended for people who need text to be delimited based on the size of the parent container whose size is not necessarily passed in pixels but in any type of measurement
 
 ### Installation
-``
+```
    yarn add reactletteroverflow
-``
+```
 or
-``
+```
    npm install reactletteroverflow
-``
+```
 
 ### Getting start
 basic example of use
