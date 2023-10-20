@@ -1,8 +1,24 @@
 {
-  "name": "letter_space",
-  "private": true,
-  "version": "0.0.0",
+  "name": "reactletteroverflow",
+  "author": "Guilherme-j10",
+  "license": "MIT",
+  "version": "1.0.0",
   "type": "module",
+  "main": "dist/reactletteroverflow.umd.js",
+  "module": "dist/reactletteroverflow.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/reactletteroverflow.es.js",
+      "require": "./dist/reactletteroverflow.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "source": "src/index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guilherme-j10/reactletteroverflow.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,7 +27,8 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-plugin-dts": "^3.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

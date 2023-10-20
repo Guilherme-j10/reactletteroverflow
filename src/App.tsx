@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
 
-    let presets = 15;
+    //let presets = 15;
 
     setInterval(() => {
 
