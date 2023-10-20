@@ -35,6 +35,8 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
     if ((information.length > get_attrs.length) && information.length)
       get_attrs = information
 
+    element_text.current.innerText = '';
+
     const parse_font = (content: string, font_size: string, font_family: string): MeasureTextPropsType => {
 
       const canvas_element = document.createElement('canvas');
