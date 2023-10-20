@@ -6,6 +6,8 @@ function App() {
   const container_reference = useRef({} as HTMLDivElement);
   const [content, set_content] = useState('');
 
+  //Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy
+
   useEffect(() => {
 
     //let presets = 15;
@@ -24,7 +26,7 @@ function App() {
 
   return (
     <div ref={container_reference} style={{
-      width: '50%',
+      width: '100%',
       border: 'solid 1px red',
       // display: 'flex',
       // justifyContent: 'center',

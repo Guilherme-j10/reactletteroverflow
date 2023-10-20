@@ -30,8 +30,10 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     }
 
-    if (get_attrs !== element_text.current.innerText && element_text.current.innerText.length)
-      get_attrs = element_text.current.innerText
+    const information = element_text.current.innerText;
+
+    if ((information.length > get_attrs.length) && information.length)
+      get_attrs = information
 
     const parse_font = (content: string, font_size: string, font_family: string): MeasureTextPropsType => {
 
