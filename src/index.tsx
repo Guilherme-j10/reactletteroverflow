@@ -16,8 +16,6 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
   const overflow_logic = (): void => {
 
-    if (element_text.current.innerText === '') return;
-
     const is_enable_title = !enable_title ? true : enable_title;
     let get_attrs = element_text.current.getAttribute('storage-content');
 
@@ -32,7 +30,7 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     }
 
-    if (get_attrs !== element_text.current.innerText)
+    if (get_attrs !== element_text.current.innerText && element_text.current.innerText.length)
       get_attrs = element_text.current.innerText
 
     const parse_font = (content: string, font_size: string, font_family: string): MeasureTextPropsType => {

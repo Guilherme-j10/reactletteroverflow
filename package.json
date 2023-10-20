@@ -2,7 +2,7 @@
   "name": "reactletteroverflow",
   "author": "Guilherme-j10",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "dist/reactletteroverflow.umd.js",
   "module": "dist/reactletteroverflow.es.js",
