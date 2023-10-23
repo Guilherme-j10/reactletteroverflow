@@ -84,8 +84,15 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
       const current_child_node = parent_container.childNodes[i] as HTMLDivElement;
       const is_own_node = current_child_node.getAttribute(attribute_name);
-      
-      if (typeof is_own_node === 'string') continue;
+
+      if (typeof is_own_node === 'string') {
+
+        current_width -= parseInt(window.getComputedStyle(current_child_node).marginRight.split('px')[0]);
+        current_width -= parseInt(window.getComputedStyle(current_child_node).marginLeft.split('px')[0]);
+
+        continue;
+
+      }
 
       current_width -= current_child_node.clientWidth;
       current_width -= parseInt(window.getComputedStyle(current_child_node).marginRight.split('px')[0]);

@@ -34,15 +34,15 @@ function App() {
       justifyContent: 'center',
       alignItems: 'center'
     }}>
-      <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold', marginRight: 10 }}>I</p>
+      <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold' }}>I</p>
       <ReactLetterOverflow
         content={content}
       >
-        {(props) => <p ref={props} style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold' }}>
+        {(props) => <p ref={props} style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold', marginRight: 10, marginLeft: 10 }}>
           {content}
         </p>}
       </ReactLetterOverflow>
-      <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold', marginLeft: 10 }}>WW</p>
+      <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold'}}>WW</p>
     </div>
   )
 }
