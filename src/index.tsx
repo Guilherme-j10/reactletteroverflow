@@ -53,8 +53,6 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
       const canvas_element = document.createElement('canvas');
       const ctx = canvas_element.getContext('2d') as CanvasRenderingContext2D;
 
-      console.log(font_weight);
-
       ctx.font = `${font_weight} ${font_size} ${font_family}`;
 
       const get_metrics = (text: string) => ctx.measureText(text).width;
