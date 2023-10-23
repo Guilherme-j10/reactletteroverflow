@@ -12,6 +12,8 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
   const element_text = useRef({} as HTMLParagraphElement);
   const observability_parent = useRef({} as MutationObserver);
+  const resize_observer = useRef({} as ResizeObserver);
+
   const default_end = '...';//!delimiter ? '...' : delimiter;
   const attribute_name = 'storage-content';
 
@@ -35,8 +37,12 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     if ((information.length > get_attrs.length) && information.length) {
 
-      element_text.current.setAttribute(attribute_name, information);
-      get_attrs = information;
+      if (!content) {
+
+        element_text.current.setAttribute(attribute_name, information);
+        get_attrs = information;
+
+      }
 
     }
 
@@ -80,6 +86,9 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     let current_width = parent_container.clientWidth;
 
+    current_width -= parseInt(window.getComputedStyle(parent_container).paddingRight.split('px')[0]);
+    current_width -= parseInt(window.getComputedStyle(parent_container).paddingLeft.split('px')[0]);
+
     for (let i = 0; i < parent_container.childElementCount; i++) {
 
       const current_child_node = parent_container.childNodes[i] as HTMLDivElement;
@@ -99,8 +108,6 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
       current_width -= parseInt(window.getComputedStyle(current_child_node).marginLeft.split('px')[0]);
 
     }
-
-    console.log(current_width);
 
     const font_size = window.getComputedStyle(element_text.current).fontSize;
     const font_family = window.getComputedStyle(element_text.current).fontFamily
@@ -133,13 +140,26 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
   const create_observing = () => {
 
-    observability_parent.current = new MutationObserver(_ => overflow_logic());
+    observability_parent.current = new MutationObserver(() => overflow_logic());
+    resize_observer.current = new ResizeObserver(() => overflow_logic());
 
     const settings = { childList: true, attributes: true };
 
     observability_parent.current.observe(element_text.current.parentElement as Node, settings);
+    resize_observer.current.observe(element_text.current.parentElement as Element);
 
   }
+
+  useEffect(() => {
+
+    if (content) {
+
+      element_text.current.setAttribute(attribute_name, content as string);
+      overflow_logic();
+
+    }
+
+  }, [content])
 
   useEffect(() => {
 
@@ -151,10 +171,11 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
       window.removeEventListener('resize', overflow_logic);
       observability_parent.current.disconnect();
+      resize_observer.current.disconnect();
 
     }
 
-  }, [enable_title, delimiter, content]);
+  }, [enable_title, delimiter]);
 
   return children(element_text);
 
