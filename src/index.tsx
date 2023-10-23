@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { MeasureTextPropsType } from "./Dtos";
 
 type Props = {
@@ -163,7 +163,7 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
   }, [content])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     create_observing();
     overflow_logic();
