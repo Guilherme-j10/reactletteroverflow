@@ -38,7 +38,7 @@ function App() {
       <ReactLetterOverflow
         content={content}
       >
-        {(props) => <p ref={props} style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'normal', marginRight: 10, marginLeft: 10 }}>
+        {(props) => <p ref={props} style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold', marginRight: 10, marginLeft: 10 }}>
           {content}
         </p>}
       </ReactLetterOverflow>

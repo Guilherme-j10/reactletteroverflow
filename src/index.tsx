@@ -48,12 +48,14 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     element_text.current.innerText = '';
 
-    const parse_font = (content: string, font_size: string, font_family: string): MeasureTextPropsType => {
+    const parse_font = (content: string, font_size: string, font_family: string, font_weight: string): MeasureTextPropsType => {
 
       const canvas_element = document.createElement('canvas');
       const ctx = canvas_element.getContext('2d') as CanvasRenderingContext2D;
 
-      ctx.font = `${font_size} ${font_family}`;
+      console.log(font_weight);
+
+      ctx.font = `${font_weight} ${font_size} ${font_family}`;
 
       const get_metrics = (text: string) => ctx.measureText(text).width;
 
@@ -110,9 +112,11 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
     }
 
     const font_size = window.getComputedStyle(element_text.current).fontSize;
-    const font_family = window.getComputedStyle(element_text.current).fontFamily
-    const font_metrics = parse_font(get_attrs, font_size, font_family);
-    const default_end_metrics = parse_font(default_end, font_size, font_family);
+    const font_family = window.getComputedStyle(element_text.current).fontFamily;
+    const font_weight = window.getComputedStyle(element_text.current).fontWeight;
+
+    const font_metrics = parse_font(get_attrs, font_size, font_family, font_weight);
+    const default_end_metrics = parse_font(default_end, font_size, font_family, font_weight);
     const space_adjustment = font_metrics.characters_list.reduce((acc, data) => acc > data.self_d ? acc : data.self_d, 0);
 
     const enebled_characters = Math.ceil(Math.abs(current_width / font_metrics.avarage_width));
