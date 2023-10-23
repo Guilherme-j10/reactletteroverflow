@@ -165,8 +165,8 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
   useEffect(() => {
 
-    overflow_logic();
     create_observing();
+    overflow_logic();
     window.addEventListener('resize', overflow_logic);
 
     return () => {
