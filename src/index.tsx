@@ -12,16 +12,17 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
   const element_text = useRef({} as HTMLParagraphElement);
   const observability_parent = useRef({} as MutationObserver);
-  const default_end = !delimiter ? '...' : delimiter;
+  const default_end = '...';//!delimiter ? '...' : delimiter;
+  const attribute_name = 'storage-content';
 
   const overflow_logic = (): void => {
 
     const is_enable_title = !enable_title ? true : enable_title;
-    let get_attrs = element_text.current.getAttribute('storage-content');
+    let get_attrs = element_text.current.getAttribute(attribute_name);
 
     if (get_attrs === null) {
 
-      element_text.current.setAttribute('storage-content', element_text.current.innerText);
+      element_text.current.setAttribute(attribute_name, element_text.current.innerText);
       element_text.current.innerText = '';
 
       overflow_logic();
@@ -32,8 +33,12 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     const information = element_text.current.innerText;
 
-    if ((information.length > get_attrs.length) && information.length)
-      get_attrs = information
+    if ((information.length > get_attrs.length) && information.length) {
+
+      element_text.current.setAttribute(attribute_name, information);
+      get_attrs = information;
+
+    }
 
     element_text.current.innerText = '';
 
@@ -72,7 +77,24 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
     }
 
     const parent_container = element_text.current.parentElement as HTMLDivElement;
-    const current_width = parent_container.clientWidth;
+
+    let current_width = parent_container.clientWidth;
+
+    for (let i = 0; i < parent_container.childElementCount; i++) {
+
+      const current_child_node = parent_container.childNodes[i] as HTMLDivElement;
+      const is_own_node = current_child_node.getAttribute(attribute_name);
+      
+      if (typeof is_own_node === 'string') continue;
+
+      current_width -= current_child_node.clientWidth;
+      current_width -= parseInt(window.getComputedStyle(current_child_node).marginRight.split('px')[0]);
+      current_width -= parseInt(window.getComputedStyle(current_child_node).marginLeft.split('px')[0]);
+
+    }
+
+    console.log(current_width);
+
     const font_size = window.getComputedStyle(element_text.current).fontSize;
     const font_family = window.getComputedStyle(element_text.current).fontFamily
     const font_metrics = parse_font(get_attrs, font_size, font_family);
