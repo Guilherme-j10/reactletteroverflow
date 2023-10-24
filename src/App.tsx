@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div ref={container_reference} style={{
-      width: '9%',
+      width: '13%',
       border: 'solid 1px red',
       display: 'flex',
       justifyContent: 'center',
@@ -36,10 +36,10 @@ function App() {
     }}>
       <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold' }}>I</p>
       <ReactLetterOverflow
-        content={content}
+        //content={content}
       >
         {(props) => <p ref={props} style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold', marginRight: 10, marginLeft: 10 }}>
-          {content}
+          Sem conexao
         </p>}
       </ReactLetterOverflow>
       <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold'}}>WW</p>

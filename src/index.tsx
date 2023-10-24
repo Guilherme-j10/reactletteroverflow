@@ -4,17 +4,16 @@ import { MeasureTextPropsType } from "./Dtos";
 type Props = {
   children: (props: React.MutableRefObject<HTMLParagraphElement>) => React.ReactNode,
   enable_title?: boolean,
-  delimiter?: string,
   content?: string
 }
 
-export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, delimiter, content }) => {
+export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, content }) => {
 
   const element_text = useRef({} as HTMLParagraphElement);
   const observability_parent = useRef({} as MutationObserver);
   const resize_observer = useRef({} as ResizeObserver);
 
-  const default_end = '...';//!delimiter ? '...' : delimiter;
+  const default_end = '...';
   const attribute_name = 'storage-content';
 
   const overflow_logic = (): void => {
@@ -30,19 +29,6 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
       overflow_logic();
 
       return;
-
-    }
-
-    const information = element_text.current.innerText;
-
-    if ((information.length > get_attrs.length) && information.length) {
-
-      if (!content) {
-
-        element_text.current.setAttribute(attribute_name, information);
-        get_attrs = information;
-
-      }
 
     }
 
@@ -177,7 +163,7 @@ export const ReactLetterOverflow: React.FC<Props> = ({ children, enable_title, d
 
     }
 
-  }, [enable_title, delimiter]);
+  }, [enable_title]);
 
   return children(element_text);
 

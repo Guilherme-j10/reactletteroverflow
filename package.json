@@ -3,7 +3,7 @@
   "author": "Guilherme-j10",
   "license": "MIT",
   "keywords": ["text-overflow", "overflow text", "overflow"],
-  "version": "1.1.6",
+  "version": "1.1.7",
   "type": "module",
   "main": "dist/reactletteroverflow.umd.js",
   "module": "dist/reactletteroverflow.es.js",
