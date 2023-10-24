@@ -36,7 +36,7 @@ function App() {
     }}>
       <p style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold' }}>I</p>
       <ReactLetterOverflow
-        //content={content}
+        content={content}
       >
         {(props) => <p ref={props} style={{ fontSize: '1.3em', fontFamily: 'Arial', fontWeight: 'bold', marginRight: 10, marginLeft: 10 }}>
           Sem conexao
